@@ -1,4 +1,4 @@
-#### [MyHome](https://meng-lanhome.github.io/MyCode.github.io/)
+#### [MyHome](https://meng-lanhome.github.io/MyCode/)
 ------------
 - Code
 ```
