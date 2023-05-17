@@ -1,5 +1,4 @@
 #### [MyHome](https://meng-lanhome.github.io/MyCode.github.io/)
-:fa-heart: :fa-star: :fa-user: :fa-thumbs-o-up: :fa-thumbs-o-down: :fa-university:
 ------------
 - Code
 ```
