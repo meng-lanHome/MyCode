@@ -61,6 +61,3 @@ Function ListFilePaths(folderPath)
     Next file
 End Function
 ```
-
-[========]
-End
