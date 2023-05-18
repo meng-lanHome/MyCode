@@ -5,7 +5,7 @@ layout: default
 #### [MyHome](https://meng-lanhome.github.io)
 ------------
 
-- Code
+- Index
 
 ```
 Private filePaths() As String 
