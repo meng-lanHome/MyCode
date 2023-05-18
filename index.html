@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link type="text/css" rel="styleSheet" href="./style/style.css">
+  <title>MyPage</title>
   <!-- 引入marked.js库 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
-  <!-- 第一个a标签用于跳转到docs/file1.md -->
-  <h1><a id="link-to-file1" href="#">Link to code</a></h1>
+  <!-- a标签列表会在这里生成 -->
+  <div id="link-list"></div>
 
-  <!-- 第二个a标签用于跳转到docs/file2.md -->
-  <h1><a id="link-to-file2" href="#">Link to index</a></h1>
-
-  <!-- JavaScript代码实现自动渲染Markdown文件 -->
+  <!-- JavaScript代码实现自动获取并渲染Markdown文件 -->
   <script>
-    const file1Url = "docs/code.md"; // 第一个Markdown文件的URL
-    const linkToFile1 = document.getElementById("link-to-file1"); // 第一个a标签的ID
-    fetch(file1Url)
+    const docsFolderUrl = "docs/"; // docs文件夹的URL
+    const linkList = document.getElementById("link-list"); // a标签列表的ID
+    fetch(docsFolderUrl)
       .then(response => response.text())
       .then(text => {
-        const html = marked(text); // 将Markdown渲染为HTML
-        linkToFile1.innerHTML = html; // 更新第一个a标签的内容
-      });
+        const markdownFiles = text.match(/(?:href=")(.*\.md)(?:")/gm); // 获取所有Markdown文件列表
 
-    const file2Url = "docs/index.md"; // 第二个Markdown文件的URL
-    const linkToFile2 = document.getElementById("link-to-file2"); // 第二个a标签的ID
-    fetch(file2Url)
-      .then(response => response.text())
-      .then(text => {
-        const html = marked(text); // 将Markdown渲染为HTML
-        linkToFile2.innerHTML = html; // 更新第二个a标签的内容
+        // 渲染Markdown文件对应数量的a标签
+        for (let i = 0; i < markdownFiles.length; i++) {
+          const fileName = markdownFiles[i].replace('href="', '').replace('"', ''); // 提取文件名部分
+          const link = document.createElement("a"); // 创建新a标签
+          link.href = docsFolderUrl + fileName; // 设置链接地址
+          link.innerHTML = fileName; // 设置显示文字
+          linkList.appendChild(link); // 将新a标签添加到列表中
+        }
       });
   </script>
 </body>
