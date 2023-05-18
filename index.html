@@ -3,9 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyPage</title>
+  <title>My GitHub Page</title>
   <!-- 引入marked.js库 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -16,19 +14,19 @@
 
   <!-- JavaScript代码实现自动获取并渲染Markdown文件 -->
   <script>
-    const docsFolderUrl = "docs/"; // docs文件夹的URL
     const linkList = document.getElementById("link-list"); // a标签列表的ID
-    fetch(docsFolderUrl)
+    fetch("./docs/")
       .then(response => response.text())
       .then(text => {
         const markdownFiles = text.match(/(?:href=")(.*\.md)(?:")/gm); // 获取所有Markdown文件列表
 
         // 渲染Markdown文件对应数量的a标签
         for (let i = 0; i < markdownFiles.length; i++) {
-          const fileName = markdownFiles[i].replace('href="', '').replace('"', ''); // 提取文件名部分
+          const fileNameWithExtension = markdownFiles[i].replace('href="', '').replace('"', ''); // 提取文件名部分（包含扩展名）
+          const fileNameWithoutExtension = fileNameWithExtension.replace('.md', ''); // 去掉扩展名部分
           const link = document.createElement("a"); // 创建新a标签
-          link.href = docsFolderUrl + fileName; // 设置链接地址
-          link.innerHTML = fileName; // 设置显示文字
+          link.href = fileNameWithExtension; // 设置链接地址
+          link.innerHTML = fileNameWithoutExtension; // 设置显示文字（不带扩展名）
           linkList.appendChild(link); // 将新a标签添加到列表中
         }
       });
