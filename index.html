@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link type="text/css" rel="styleSheet" href="./style/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link type="text/css" rel="styleSheet" href="./style/style.css">
+  <!-- 引入marked.js库 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
+
 <body>
-    <div>
-        <a href="./docs/README">hh</a>
-    </div>
-    <script src="./js/script.js"></script>
+  <!-- 第一个a标签用于跳转到docs/file1.md -->
+  <h1><a id="link-to-file1" href="#">Link to File1</a></h1>
+
+  <!-- 第二个a标签用于跳转到docs/file2.md -->
+  <h1><a id="link-to-file2" href="#">Link to File2</a></h1>
+
+  <!-- JavaScript代码实现自动渲染Markdown文件 -->
+  <script>
+    const file1Url = "docs/file1.md"; // 第一个Markdown文件的URL
+    const linkToFile1 = document.getElementById("link-to-file1"); // 第一个a标签的ID
+    fetch(file1Url)
+      .then(response => response.text())
+      .then(text => {
+        const html = marked(text); // 将Markdown渲染为HTML
+        linkToFile1.innerHTML = html; // 更新第一个a标签的内容
+      });
+
+    const file2Url = "docs/file2.md"; // 第二个Markdown文件的URL
+    const linkToFile2 = document.getElementById("link-to-file2"); // 第二个a标签的ID
+    fetch(file2Url)
+      .then(response => response.text())
+      .then(text => {
+        const html = marked(text); // 将Markdown渲染为HTML
+        linkToFile2.innerHTML = html; // 更新第二个a标签的内容
+      });
+  </script>
 </body>
+
 </html>
