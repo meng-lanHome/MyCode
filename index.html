@@ -2,35 +2,15 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>My GitHub Page</title>
-  <!-- 引入marked.js库 -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <title>My Project</title>
 </head>
 
 <body>
-  <!-- a标签列表会在这里生成 -->
-  <div id="link-list"></div>
-
-  <!-- JavaScript代码实现自动获取并渲染Markdown文件 -->
-  <script>
-    const linkList = document.getElementById("link-list"); // a标签列表的ID
-    fetch("https://github.com/meng-lanHome/meng-lanhome.github.io/tree/main/docs")
-      .then(response => response.text())
-      .then(text => {
-        const markdownFiles = text.match(/(?:href=")(.*\.md)(?:")/gm); // 获取所有Markdown文件列表
-
-        // 渲染Markdown文件对应数量的a标签
-        for (let i = 0; i < markdownFiles.length; i++) {
-          const fileNameWithExtension = markdownFiles[i].replace('href="', '').replace('"', ''); // 提取文件名部分（包含扩展名）
-          const fileNameWithoutExtension = fileNameWithExtension.replace('.md', ''); // 去掉扩展名部分
-          const link = document.createElement("a"); // 创建新a标签
-          link.href = fileNameWithExtension; // 设置链接地址
-          link.innerHTML = fileNameWithoutExtension; // 设置显示文字（不带扩展名）
-          linkList.appendChild(link); // 将新a标签添加到列表中
-        }
-      });
-  </script>
+  <h1>Welcome to My Project</h1>
+  <ul>
+    <li><a href="docs/index.html">Index</a></li>
+    <li><a href="docs/code.html">Code</a></li>
+  </ul>
 </body>
 
 </html>
