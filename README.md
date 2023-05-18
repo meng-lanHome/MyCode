@@ -1,4 +1,4 @@
-#### [MyHome](https://meng-lanhome.github.io/MyCode/)
+#### [MyHome](https://meng-lanhome.github.io)
 ------------
 
 - Code
