@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Project</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        window.onload = function () {
+            var links = document.getElementById('doc-links');
+            loadMDFiles(links);
+        }
+
+        function loadMDFiles(links) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'docs/', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var files = xhr.responseText.split('\n');
+                    for (var i = 0; i < files.length; i++) {
+                        if (files[i].endsWith('.md')) {
+                            var url = 'docs/' + files[i];
+                            var li = document.createElement('li');
+                            var a = document.createElement('a');
+                            a.setAttribute('href', url.replace('.md', '.html'));
+                            loadContent(url, a);
+                            li.appendChild(a);
+                            links.appendChild(li);
+                        }
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function loadContent(url, link) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var content = marked(xhr.responseText);
+                    link.innerHTML = content;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to My Project</h1>
+    <ul id="doc-links">
+    </ul>
+</body>
+
+</html>
