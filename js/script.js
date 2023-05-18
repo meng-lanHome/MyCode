@@ -1,0 +1,1 @@
+let aTab=document.getElementsByClassName("a");
