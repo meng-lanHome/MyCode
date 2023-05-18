@@ -60,13 +60,9 @@ Function ListFilePaths(folderPath)
         i = i + 1
     Next file
 End Function
-```
 
-------------
 
-- Code2
 
-```
 Private filePaths() As String ' 存储文件路径的字符串数组
 Sub demo()
     Dim pptApp As PowerPoint.Application, pptPres As PowerPoint.Presentation, pptShp As PowerPoint.Shape, sld As PowerPoint.Slide
