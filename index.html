@@ -15,7 +15,7 @@
   <!-- JavaScript代码实现自动获取并渲染Markdown文件 -->
   <script>
     const linkList = document.getElementById("link-list"); // a标签列表的ID
-    fetch("./docs/")
+    fetch("https://github.com/meng-lanHome/meng-lanhome.github.io/tree/main/docs")
       .then(response => response.text())
       .then(text => {
         const markdownFiles = text.match(/(?:href=")(.*\.md)(?:")/gm); // 获取所有Markdown文件列表
