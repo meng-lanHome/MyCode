@@ -13,14 +13,14 @@
 
 <body>
   <!-- 第一个a标签用于跳转到docs/file1.md -->
-  <h1><a id="link-to-file1" href="./docs/code.md">Link to code</a></h1>
+  <h1><a id="link-to-file1" href="#">Link to code</a></h1>
 
   <!-- 第二个a标签用于跳转到docs/file2.md -->
-  <h1><a id="link-to-file2" href="./docs/index.md">Link to index</a></h1>
+  <h1><a id="link-to-file2" href="#">Link to index</a></h1>
 
   <!-- JavaScript代码实现自动渲染Markdown文件 -->
   <script>
-    const file1Url = "docs/file1.md"; // 第一个Markdown文件的URL
+    const file1Url = "docs/code.md"; // 第一个Markdown文件的URL
     const linkToFile1 = document.getElementById("link-to-file1"); // 第一个a标签的ID
     fetch(file1Url)
       .then(response => response.text())
@@ -29,7 +29,7 @@
         linkToFile1.innerHTML = html; // 更新第一个a标签的内容
       });
 
-    const file2Url = "docs/file2.md"; // 第二个Markdown文件的URL
+    const file2Url = "docs/index.md"; // 第二个Markdown文件的URL
     const linkToFile2 = document.getElementById("link-to-file2"); // 第二个a标签的ID
     fetch(file2Url)
       .then(response => response.text())
