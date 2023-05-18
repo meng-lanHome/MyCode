@@ -61,8 +61,11 @@ Function ListFilePaths(folderPath)
     Next file
 End Function
 ```
+
 ------------
+
 - Code2
+
 ```
 Private filePaths() As String ' 存储文件路径的字符串数组
 Sub demo()
@@ -129,5 +132,4 @@ Function ListFilePaths(folderPath)
         i = i + 1
     Next file
 End Function
-
 ```
