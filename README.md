@@ -9,7 +9,6 @@ Sub demo()
     Dim pptApp As PowerPoint.Application, pptPres As PowerPoint.Presentation, pptShp As PowerPoint.Shape, sld As PowerPoint.Slide
     Dim WordDoc As Word.Document
     Dim chartSelected As Boolean
-    
     Set WordDoc = Word.ActiveDocument
     ListFilePaths ("C:\Users\menglan\Desktop\tools\office\Demo\PPT")
     Set pptApp = New PowerPoint.Application
@@ -58,7 +57,7 @@ Function ListFilePaths(folderPath)
     Dim fso As Object
     Dim folder As Object
     Dim file As Object
-    
+
     Dim i As Long
     Set fso = CreateObject("Scripting.FileSystemObject")
     Set folder = fso.GetFolder(folderPath)
