@@ -15,7 +15,7 @@ function buildFileList(data) {
     data.forEach((file) => {
         const listItem = `
       <div>
-        <a href="${file.download_url.replace(/\.md$/, ".html")}">
+        <a href="${file.path.replace(/\.md$/, ".html")}">
           ${file.name.replace(/\.md$/, "")}
         </a>
       </div>`;
