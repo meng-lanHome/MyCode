@@ -1,55 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>My Project</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        window.onload = function () {
-            var links = document.getElementById('doc-links');
-            loadMDFiles(links);
-        }
-
-        function loadMDFiles(links) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'docs/', true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var files = xhr.responseText.split('\n');
-                    for (var i = 0; i < files.length; i++) {
-                        if (files[i].endsWith('.md')) {
-                            var url = 'docs/' + files[i];
-                            var li = document.createElement('li');
-                            var a = document.createElement('a');
-                            a.setAttribute('href', url.replace('.md', '.html'));
-                            loadContent(url, a);
-                            li.appendChild(a);
-                            links.appendChild(li);
-                        }
-                    }
-                }
-            };
-            xhr.send();
-        }
-
-        function loadContent(url, link) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var content = marked(xhr.responseText);
-                    link.innerHTML = content;
-                }
-            };
-            xhr.send();
-        }
-    </script>
+    <meta charset="UTF-8">
+    <title>GitHub 文件列表</title>
 </head>
 
 <body>
-    <h1>Welcome to My Project</h1>
-    <ul id="doc-links">
-    </ul>
+    <div id="myDiv"></div>
+
+    <script>
+        const owner = "meng-lanhome"; // GitHub 用户名（或机构名）
+        const repo = "meng-lanhome.github.io"; // 仓库名
+        const path = "docs"; // 目录路径
+
+        // 构造请求 URL
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+        // 发送 HTTP GET 请求
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // 创建 ul 元素
+                const ul = document.createElement("ul");
+
+                // 遍历文件列表，并创建 li 和 a 元素，添加到 ul 中
+                data.forEach(file => {
+                    const li = document.createElement("li");
+                    const a = document.createElement("a");
+                    a.innerText = file.name.replace(/\.md$/, '');
+                    // a.setAttribute('href', url.replace('.md', '.html'));
+                    a.href = file.path.replace(/\.md$/, '.html');
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+
+                // 将 ul 元素添加到指定的 div 中
+                const div = document.getElementById("myDiv");
+                div.appendChild(ul);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </body>
 
 </html>
