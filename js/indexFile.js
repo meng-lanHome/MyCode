@@ -18,17 +18,16 @@ async function showFile(path) {
     }
 }
 function buildFileContainer(data) {
-    const ListContainer=document.createElement('div');
+    const ListContainer=document.createElement('ul');
     let count=1;
     data.forEach((file)=>{
         const listItem=` 
-            <div class="file${count}">
-                <a>${count}</a>      
-                <a href="${file.path.replace(/\.md$/, ".html")}">
-                    ${file.name.replace(/\.md$/, "")}
-                </a>
-                <a>${(file.size/1024).toFixed(2)}</a><span>kb</span>
-                <a>${file.type}</a>
+            <div class="file">
+                <h3>${count}</h3>      
+                    <a href="${file.path.replace(/\.md$/, ".html")}">
+                        ${file.name.replace(/\.md$/, "")}
+                    </a>
+                <p>${(file.size/1024).toFixed(2)}</p>
             </div>
         `;
         ListContainer.innerHTML+=listItem;

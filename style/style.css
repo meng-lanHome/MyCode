@@ -5,50 +5,41 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
-
-h1 {
-    font-size: 2rem;
+h1{
+    font-size: 80px;
     text-align: center;
-    margin: 1rem 0;
 }
-
-#file-list {
-    width: 70%;
-    margin: 0 auto;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    list-style: none;
-    /* 去掉 li 的黑点 */
+.container{
     display: flex;
-    /* 将列表项水平分布 */
-    flex-wrap: wrap;
-    /* 处理多行情况 */
-    /* justify-content: space-between; */
-    /* 左右分布 */
+    justify-content: center;
 }
-
-#file-list div {
+.container .file{
+    display: block;
+    width: 200px;
+    height: 180px;
+    background-color: azure;
+    box-shadow: 0 2.2px 4.4px rgba(0,0,0,0.22);
+    border-radius: 4.4px;
+}
+.container div.file:hover{
+    box-shadow: 0 4.4px 8.8px rgba(0,0,0,0.22);
+}
+.container div h3{
     width: 100%;
-    /* 控制每个列表项的宽度 */
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: 65%;
 }
-
-#file-list li a {
-    text-decoration: none;
+.container div a{
+    margin: 10px 15px 10px 15px;
+    font-size: 1.5rem;
+    font-weight: normal;
     color: #333;
+    text-decoration: none;
 }
-
-#file-list li a:hover {
-    color: #007bff;
+.container div p{
+    margin: 0.15px;
+    font-size: 0.9rem;
+    color: #999;
+    line-height: 1.3;
 }
