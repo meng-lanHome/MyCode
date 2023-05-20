@@ -22,17 +22,26 @@ function buildFileContainer(data) {
     let count=1;
     data.forEach((file)=>{
         const listItem=` 
-            <div class="file">
-                <h3>${count}</h3>      
-                    <a href="${file.path.replace(/\.md$/, ".html")}">
+            <li class="file">
+                <div class="count">${count}</div>
+                <div>
+                    <a href="${file.path.replace(/\.md$/, ".html")}" class="href">
                         ${file.name.replace(/\.md$/, "")}
                     </a>
-                <p>${(file.size/1024).toFixed(2)}</p>
-            </div>
+                </div>
+                <div>
+                    <p>size: ${(file.size/1024).toFixed(2)}kb</p>
+                </div>
+                <div>
+                    <p>type: ${file.type}</p>
+                </div>
+            </li>
         `;
         ListContainer.innerHTML+=listItem;
+
         count++;
     });
+    console.log(ListContainer)
     return ListContainer
 }
 showFile('Data/db/date.json');

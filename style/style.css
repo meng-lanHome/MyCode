@@ -1,47 +1,51 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    color: #333;
+body{
+    background-color: #1221;
+    color: #333333;
 }
 h1{
-    font-size: 80px;
-    text-align: center;
-}
-.container{
-    display: flex;
     justify-content: center;
+    text-align: center;
+    font-size:90px;
 }
-.container .file{
-    display: block;
-    width: 200px;
-    height: 180px;
-    background-color: azure;
-    box-shadow: 0 2.2px 4.4px rgba(0,0,0,0.22);
-    border-radius: 4.4px;
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
 }
-.container div.file:hover{
-    box-shadow: 0 4.4px 8.8px rgba(0,0,0,0.22);
+.count{
+    font-size: 10px;
+    color: #363;
 }
-.container div h3{
-    width: 100%;
-    height: 65%;
+li.file {
+    width: 25%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: #0303;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5%;
 }
-.container div a,
-div a
-{
-    margin: 10px 15px 10px 15px;
-    font-size: 1.5rem;
-    font-weight: normal;
+
+li.file div:first-of-type {
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+li.file > div:nth-child(2) a {
     color: #333;
     text-decoration: none;
+    font-size: 40px;
 }
-.container div p{
-    margin: 0.15px;
-    font-size: 0.9rem;
-    color: #999;
-    line-height: 1.3;
+
+li.file div:last-of-type {
+    font-size: 16px;
+}
+
+@media (max-width: 767px) {
+    li.file {
+        width: 100%;
+        margin-right: 0;
+    }
 }
