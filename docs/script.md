@@ -8,7 +8,7 @@ description: "script"
 
 - Script
 
-```
+``` javascript
 async function getFileJson(path) {
     try {
         const response = await fetch(path);
