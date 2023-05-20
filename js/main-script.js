@@ -8,10 +8,25 @@ async function getFileJson(path) {
         throw new Error(`Unable to load JSON file from ${path}`);
     }
 }
-async function showFile(path) {
+
+async function FileList(owner, repo, path) {
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(
+            `Failed to retrieve file list (${response.status} ${response.statusText})`
+        );
+    }
+    const data = await response.json();
+    console.log(url)
+    return data;
+}
+
+async function showFile(owner, repo, path) {
     try {
-        const data = await getFileJson(path);
+        const data = await FileList(owner, repo, path);
         const container= buildFileContainer(data);
+
         document.getElementById('container').appendChild(container)
     } catch (error) {
         console.error(error);
@@ -44,4 +59,6 @@ function buildFileContainer(data) {
     console.log(ListContainer)
     return ListContainer
 }
-showFile('Data/db/date.json');
+
+showFile("meng-lanhome", "meng-lanhome.github.io", "docs");
+
