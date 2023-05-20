@@ -1,5 +1,6 @@
 ---
-layout: default
+layout: page
+description: "index"
 ---
 
 #### [MyHome](https://meng-lanhome.github.io)
