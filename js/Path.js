@@ -18,9 +18,18 @@ async function showFileList(owner, repo, path){
         console.log(error)
     }
 }
+
 function BuoldFile(data) {
     data.forEach((file)=>{
 
     });
 }
 // showFileList("meng-lanhome", "meng-lanhome.github.io", "docs");
+fetch('Data/db/date.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // 在控制台中输出数据
+    })
+    .catch(error => {
+        console.error(error); // 如果出错，输出错误信息
+    });
