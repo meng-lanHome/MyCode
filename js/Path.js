@@ -9,7 +9,6 @@ async function getFileJson(path) {
     }
 }
 async function showFile(path) {
-
     try {
         const data = await getFileJson(path);
         const container= buildFileContainer(data);
