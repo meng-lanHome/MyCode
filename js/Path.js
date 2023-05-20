@@ -1,35 +1,40 @@
-const div=document.getElementsByClassName("md-file");
-async function FileJson(owner,repo,path){
-    const url=`https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-    const response=await fetch(url);
-    if (!response.ok){
-        throw new Error(
-            `Failed to retrieve file list (${response.status} ${response.statusText})`
-        );
-    }
-    const data = await response.json();
-    return data;
-}
-async function showFileList(owner, repo, path){
+async function getFileJson(path) {
     try {
-        const data = await FileJson(owner, repo, path);
-        console.log(data)
+        const response = await fetch(path);
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.log(error)
+        console.error(error);
+        throw new Error(`Unable to load JSON file from ${path}`);
     }
 }
+async function showFile(path) {
 
-function BuoldFile(data) {
-    data.forEach((file)=>{
-
-    });
+    try {
+        const data = await getFileJson(path);
+        const container= buildFileContainer(data);
+        document.getElementById('container').appendChild(container)
+    } catch (error) {
+        console.error(error);
+    }
 }
-// showFileList("meng-lanhome", "meng-lanhome.github.io", "docs");
-fetch('Data/db/date.json')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // 在控制台中输出数据
-    })
-    .catch(error => {
-        console.error(error); // 如果出错，输出错误信息
+function buildFileContainer(data) {
+    const ListContainer=document.createElement('div');
+    let count=1;
+    data.forEach((file)=>{
+        const listItem=` 
+            <div class="file${count}">
+                <a>${count}</a>      
+                <a href="${file.path.replace(/\.md$/, ".html")}">
+                    ${file.name.replace(/\.md$/, "")}
+                </a>
+                <a>${(file.size/1024).toFixed(2)}</a><span>kb</span>
+                <a>${file.type}</a>
+            </div>
+        `;
+        ListContainer.innerHTML+=listItem;
+        count++;
     });
+    return ListContainer
+}
+showFile('Data/db/date.json');
