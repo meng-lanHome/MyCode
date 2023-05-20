@@ -9,42 +9,42 @@ description: "script"
 - Script
 
 ```
-async function fetchFileList(owner, repo, path) {
-    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(
-            `Failed to retrieve file list (${response.status} ${response.statusText})`
-        );
-    }
-    const data = await response.json();
-    return data;
-}
-
-function buildFileList(data) {
-    const fileList = [];
-    data.forEach((file) => {
-        const listItem = `
-      <div>
-        <a href="${file.path.replace(/\.md$/, ".html")}">
-          ${file.name.replace(/\.md$/, "")}
-        </a>
-      </div>`;
-        fileList.push(listItem);
-    });
-    const fileListContainer = document.createElement("ul");
-    fileListContainer.innerHTML = fileList.join("");
-    return fileListContainer;
-}
-
-async function showFileList(owner, repo, path) {
+async function getFileJson(path) {
     try {
-        const data = await fetchFileList(owner, repo, path);
-        const fileListContainer = buildFileList(data);
-        document.getElementById("file-list").appendChild(fileListContainer);
+        const response = await fetch(path);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        throw new Error(`Unable to load JSON file from ${path}`);
+    }
+}
+async function showFile(path) {
+    try {
+        const data = await getFileJson(path);
+        const container= buildFileContainer(data);
+        document.getElementById('container').appendChild(container)
     } catch (error) {
         console.error(error);
     }
 }
-showFileList("owner", "repo", "path");
+function buildFileContainer(data) {
+    const ListContainer=document.createElement('ul');
+    let count=1;
+    data.forEach((file)=>{
+        const listItem=` 
+            <div class="file">
+                <h3>${count}</h3>      
+                    <a href="${file.path.replace(/\.md$/, ".html")}">
+                        ${file.name.replace(/\.md$/, "")}
+                    </a>
+                <p>${(file.size/1024).toFixed(2)}</p>
+            </div>
+        `;
+        ListContainer.innerHTML+=listItem;
+        count++;
+    });
+    return ListContainer
+}
+showFile('Data/db/date.json');
 ```
