@@ -22,9 +22,10 @@ async function FileList(owner, repo, path) {
     return data;
 }
 
-async function showFile(owner, repo, path) {
+async function showFile(path) {
     try {
-        const data = await FileList(owner, repo, path);
+        const data = await getFileJson(path);
+
         const container= buildFileContainer(data);
 
         document.getElementById('container').appendChild(container)
@@ -60,5 +61,5 @@ function buildFileContainer(data) {
     return ListContainer
 }
 
-showFile("meng-lanhome", "meng-lanhome.github.io", "docs");
+showFile("Data/db/date.json");
 
