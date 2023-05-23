@@ -1,8 +1,8 @@
 ---
 layout: default
-description: "This is a brief summary of my post."
+description:"This is a brief summary of my post."
 title:MyHome
-date: 2023-05-23 10:00:00 +0800
+date:"2023-05-23"
 ---
 
 #### [MyHome](https://meng-lanhome.github.io)
