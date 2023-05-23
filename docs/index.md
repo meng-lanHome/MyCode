@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 description: This is a brief summary of my post.
 title:MyHome
 ---
