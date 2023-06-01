@@ -37,6 +37,7 @@ function buildFileContainer(data) {
     const ListContainer = document.createElement('ul');
     let count = 1;
     data.forEach((file) => {
+        console.log(file)
         const listItem = ` 
             <li class="file">
                 <div class="count">${count}</div>
